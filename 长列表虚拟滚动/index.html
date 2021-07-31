@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #outer {
+    width: 400px;
+    border: 5px solid white;
+    overflow: hidden;
+  }
+  #container {
+    position: relative;
+    overflow-y: scroll;
+    width: 415px;
+    cursor: pointer;
+  }
+  .item {
+    height: 40px;
+    background-color: coral;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+  }
+</style>
+<body>
+  <div id="root">
+    <!-- 设置一个外层元素，隐藏调内部元素的滚动条 -->
+    <div id="outer">
+      <div id="container"></div>
+    </div>
+  </div>
+<script src="scroll.js"></script>
+</body>
+</html>
