@@ -33,19 +33,33 @@ const inilSoroll = () => {
   let curRenderData = data.slice(0, size);
   renderItems(curRenderData);
 
-  const handleScroll = throttle((e) => {
+  let timer = null;
+
+  // const handleScroll = throttle((e) => {
+  //   const { target } = e;
+  //   // 获取滚动距离
+  //   const { scrollTop }  = target;
+  //   // 获取当前显示的第一个元素索引
+  //   const number = Math.floor(scrollTop / itemHeight);
+  //   curRenderData = data.slice(number, number + size);
+  //   renderItems(curRenderData);
+  //   return () => el.removeEventListener('scroll', handleScroll, false);
+  // }, 20);
+
+  const handleScroll = (e) => {
+    if(timer) window.cancelAnimationFrame(timer);
+    timer = window.requestAnimationFrame(() => {
     const { target } = e;
-    // 获取滚动距离
-    const { scrollTop }  = target;
-    // 获取当前显示的第一个元素索引
-    const number = Math.floor(scrollTop / itemHeight);
-    curRenderData = data.slice(number, number + size);
-    renderItems(curRenderData);
-    return () => el.removeEventListener('scroll', handleScroll, false);
-  }, 20);
+      // 获取滚动距离
+      const { scrollTop }  = target;
+      // 获取当前显示的第一个元素索引
+      const number = Math.floor(scrollTop / itemHeight);
+      curRenderData = data.slice(number, number + size);
+      renderItems(curRenderData);
+    })
+  }
 
   el.addEventListener('scroll', handleScroll, false);
 }
 
 inilSoroll();
-
